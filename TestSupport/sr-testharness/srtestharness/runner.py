@@ -1,3 +1,12 @@
+#
+# Copyright 2012 Square Inc.
+# Portions Copyright (c) 2016-present, Facebook, Inc.
+# All rights reserved.
+#
+# This source code is licensed under the license found in the
+# LICENSE-examples file in the root directory of this source tree.
+#
+
 import argparse
 import json
 import sys
@@ -9,7 +18,7 @@ from twisted.internet import reactor
 from twisted.web.server import Site
 from twisted.web.static import File
 from autobahntestsuite.fuzzing import FuzzingServerFactory
-from autobahn.websocket import listenWS
+from autobahn.twisted.websocket import listenWS
 
 class jsondict(dict):
     def __init__(self, json_value):

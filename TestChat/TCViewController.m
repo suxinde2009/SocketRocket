@@ -1,9 +1,10 @@
 //
-//  TCViewController.m
-//  TestChat
+// Copyright 2012 Square Inc.
+// Portions Copyright (c) 2016-present, Facebook, Inc.
+// All rights reserved.
 //
-//  Created by Mike Lewis on 1/28/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+// This source code is licensed under the license found in the
+// LICENSE-examples file in the root directory of this source tree.
 //
 
 #import "TCViewController.h"
@@ -12,7 +13,7 @@
 
 @interface TCMessage : NSObject
 
-- (id)initWithMessage:(NSString *)message fromMe:(BOOL)fromMe;
+- (instancetype)initWithMessage:(NSString *)message fromMe:(BOOL)fromMe;
 
 @property (nonatomic, retain, readonly) NSString *message;
 @property (nonatomic, readonly)  BOOL fromMe;
@@ -173,7 +174,7 @@
 @synthesize message = _message;
 @synthesize fromMe = _fromMe;
 
-- (id)initWithMessage:(NSString *)message fromMe:(BOOL)fromMe;
+- (instancetype)initWithMessage:(NSString *)message fromMe:(BOOL)fromMe;
 {
     self = [super init];
     if (self) {

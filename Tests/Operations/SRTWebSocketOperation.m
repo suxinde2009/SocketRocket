@@ -1,12 +1,17 @@
 //
-//  SRTWebSocketOperation.m
-//  SocketRocket
+// Copyright 2012 Square Inc.
+// Portions Copyright (c) 2016-present, Facebook, Inc.
 //
-//  Created by Mike Lewis on 1/28/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+// All rights reserved.
+//
+// This source code is licensed under the BSD-style license found in the
+// LICENSE file in the root directory of this source tree. An additional grant
+// of patent rights can be found in the PATENTS file in the same directory.
 //
 
 #import "SRTWebSocketOperation.h"
+
+#import "SRAutobahnUtilities.h"
 
 @interface SRTWebSocketOperation ()
 
@@ -22,7 +27,7 @@
 @synthesize isExecuting = _isExecuting;
 @synthesize error = _error;
 
-- (id)initWithURL:(NSURL *)URL;
+- (instancetype)initWithURL:(NSURL *)URL;
 {
     self = [super init];
     if (self) {
@@ -76,6 +81,16 @@
     [self didChangeValueForKey:@"isFinished"];
     _webSocket.delegate = nil;
     _webSocket = nil;
+}
+
+- (BOOL)waitUntilFinishedWithTimeout:(NSTimeInterval)timeout
+{
+    if (self.isFinished) {
+        return YES;
+    }
+    return SRRunLoopRunUntil(^BOOL{
+        return self.isFinished;
+    }, timeout);
 }
 
 @end
